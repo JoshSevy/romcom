@@ -13,12 +13,70 @@ var savedCovers = [
 
 var currentCover = new Cover(cover.src = covers[getRandomIndex(covers)], title.innerHTML = titles[getRandomIndex(titles)], tagline1.innerText = descriptors[getRandomIndex(descriptors)],  tagline2.innerText = descriptors[getRandomIndex(descriptors)]);
 
-controls.addEventListener('click', newRandomCover);
+controls.addEventListener('click', displayPages);
 
 
+function displayPages(event) {
+  var randomCoverButton = document.querySelector('.random-cover-button');
+  var makeNewButton = document.querySelector('.make-new-button');
+  var savedButton = document.querySelector('.view-saved-button');
+  var homeButton = document.querySelector('.home-button');
+  if(event.target === randomCoverButton) {
+    newRandomCover();
+  } else if (event.target === makeNewButton) {
+    viewForm();
+  } else if (event.target === savedButton) {
+    viewSavedCovers();
+  } else if (event.target === homeButton) {
+    viewHome();
+  }
+}
 
 function newRandomCover() {
   currentCover = new Cover(cover.src = covers[getRandomIndex(covers)], title.innerHTML = titles[getRandomIndex(titles)], tagline1.innerText = descriptors[getRandomIndex(descriptors)],  tagline2.innerText = descriptors[getRandomIndex(descriptors)]);
+}
+
+function viewForm() {
+  var homeView = document.querySelector('.home-view');
+  var formView = document.querySelector('.form-view');
+  var homeButton = document.querySelector('.home-button');
+  var saveButton = document.querySelector('.save-cover-button');
+  var randomCoverButton = document.querySelector('.random-cover-button');
+  homeView.classList.add('hidden');
+  randomCoverButton.classList.add('hidden');
+  saveButton.classList.add('hidden');
+  homeButton.classList.remove('hidden');
+  formView.classList.remove('hidden');
+}
+
+function viewSavedCovers() {
+  var homeView = document.querySelector('.home-view');
+  var formView = document.querySelector('.form-view');
+  var homeButton = document.querySelector('.home-button');
+  var saveButton = document.querySelector('.save-cover-button');
+  var randomCoverButton = document.querySelector('.random-cover-button');
+  var savedView = document.querySelector('.saved-view');
+  homeView.classList.add('hidden');
+  formView.classList.add('hidden');
+  randomCoverButton.classList.add('hidden');
+  saveButton.classList.add('hidden');
+  savedView.classList.remove('hidden');
+  homeButton.classList.remove('hidden');
+}
+
+function viewHome() {
+  var homeView = document.querySelector('.home-view');
+  var formView = document.querySelector('.form-view');
+  var homeButton = document.querySelector('.home-button');
+  var saveButton = document.querySelector('.save-cover-button');
+  var randomCoverButton = document.querySelector('.random-cover-button');
+  var savedView = document.querySelector('.saved-view');
+  homeView.classList.remove('hidden');
+  homeButton.classList.remove('hidden');
+  randomCoverButton.classList.remove('hidden');
+  formView.classList.add('hidden');
+  saveButton.classList.add('hidden');
+  savedView.classList.add('hidden');
 }
 
 function getRandomIndex(array) {
